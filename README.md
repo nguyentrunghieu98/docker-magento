@@ -1,101 +1,77 @@
-<h1 align="center">hieubo98/docker-magento</h1
+<h1 align="center">nguyentrunghieu98/docker-magento</h1>
 
 
-
-#### For more details on how everything works, see the extended [Setup readme](https://github.com/hieubo98/docker-magento/blob/master/SETUP.md).
-
-#### Project Setup
-
-- [Setup readme](https://github.com/hieubo98/docker-magento/blob/master/README.md)
-
-#### Helper Scripts
-
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064258" target="_blank">Run CLI commands within containers</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9331008" target="_blank">Stop, start & restart containers</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064269" target="_blank">Run binaries within containers</a>
-
-#### Docker Filesystem & Volumes
-
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064334" target="_blank">Understand volumes & host bind mounts</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064338" target="_blank">Manage files & folders on containers</a>
-
-#### Customize Server Configuration
-
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064349" target="_blank">Customize the Nginx configuration</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064356" target="_blank">Quickly switch PHP versions</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064350" target="_blank">Install extensions & packages</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064477" target="_blank">Run additional services as containers</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/14780970" target="_blank">Configure multi-store instances</a>
-
-#### PHPStorm & Xdebug
-
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9748834" target="_blank">Setup PHPStorm for a Magento Docker project</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9763893" target="_blank">Generate XML URNs for a Magento Docker project</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064478" target="_blank">Install Xdebug browser plugin</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064482" target="_blank">Enable, disable, & check Xdebug</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064615" target="_blank">Configure PHPStorm for Xdebug</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064617" target="_blank">Trigger Xdebug breakpoints with PHPStorm</a>
-
-#### Manual Setup (Optional)
-
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9064259" target="_blank">Manual setup for new Magento installs</a>
-- <a href="https://courses.m.academy/courses/setup-magento-2-development-environment-docker/lectures/9283467" target="_blank">Manual setup for an existing Magento instance</a>
+## Project Setup
+- [Setup Docker](https://github.com/nguyentrunghieu98/docker-magento/blob/master/SETUP.md)
 
 ## Docker Hub
 
 View Dockerfiles:
+<details>
+<summary>🧭 NGINX (Docker Hub)</summary>
 
-- [markoshust/magento-nginx (Docker Hub)](https://hub.docker.com/r/markoshust/magento-nginx/)
-  - 1.18
-    - [`1.18`, `1.18-5`](https://github.com/markshust/docker-magento/tree/master/images/nginx/1.18)
-    - [`1.18-4`](https://github.com/markshust/docker-magento/tree/39.1.0/images/nginx/1.18)
-    - [`1.18-3`](https://github.com/markshust/docker-magento/tree/34.0.0/images/nginx/1.18)
-    - [`1.18-2`](https://github.com/markshust/docker-magento/tree/33.0.0/images/nginx/1.18)
-    - [`1.18-1`](https://github.com/markshust/docker-magento/tree/31.0.1/images/nginx/1.18)
-    - [`1.18-0`](https://github.com/markshust/docker-magento/tree/31.0.0/images/nginx/1.18)
-- [markoshust/magento-php (Docker Hub)](https://hub.docker.com/r/markoshust/magento-php/)
-  - 8.0 (available for alpha testing)
-    - [`8.0-fpm-develop`](https://github.com/markshust/docker-magento/tree/master/images/php/8.0)
-  - 7.4
-    - [`7.4-fpm`, `7.4-fpm-10`](https://github.com/markshust/docker-magento/tree/master/images/php/7.4)
-    - [`7.4-fpm-9`](https://github.com/markshust/docker-magento/tree/39.1.0/images/php/7.4)
-    - [`7.4-fpm-8`](https://github.com/markshust/docker-magento/tree/39.0.2/images/php/7.4)
-    - [`7.4-fpm-7`](https://github.com/markshust/docker-magento/tree/39.0.0/images/php/7.4)
-    - [`7.4-fpm-6`](https://github.com/markshust/docker-magento/tree/38.0.0/images/php/7.4)
-    - [`7.4-fpm-5`](https://github.com/markshust/docker-magento/tree/37.0.2/images/php/7.4)
-    - [`7.4-fpm-4`](https://github.com/markshust/docker-magento/tree/36.0.2/images/php/7.4)
-    - [`7.4-fpm-3`](https://github.com/markshust/docker-magento/tree/36.0.1/images/php/7.4)
-    - [`7.4-fpm-2`](https://github.com/markshust/docker-magento/tree/34.2.0/images/php/7.4)
-    - [`7.4-fpm-1`](https://github.com/markshust/docker-magento/tree/34.1.0/images/php/7.4)
-    - [`7.4-fpm-0`](https://github.com/markshust/docker-magento/tree/33.0.0/images/php/7.4)
-  - 7.3
-    - [`7.3-fpm`, `7.3-fpm-17`](https://github.com/markshust/docker-magento/tree/master/images/php/7.3)
-    - [`7.3-fpm-16`](https://github.com/markshust/docker-magento/tree/39.1.0/images/php/7.3)
-    - [`7.3-fpm-15`](https://github.com/markshust/docker-magento/tree/39.0.2/images/php/7.3)
-    - [`7.3-fpm-14`](https://github.com/markshust/docker-magento/tree/39.0.0/images/php/7.3)
-    - [`7.3-fpm-13`](https://github.com/markshust/docker-magento/tree/38.0.0/images/php/7.3)
-    - [`7.3-fpm-12`](https://github.com/markshust/docker-magento/tree/37.0.2/images/php/7.3)
-    - [`7.3-fpm-11`](https://github.com/markshust/docker-magento/tree/36.0.2/images/php/7.3)
-    - [`7.3-fpm-10`](https://github.com/markshust/docker-magento/tree/36.0.1/images/php/7.3)
-    - [`7.3-fpm-9`](https://github.com/markshust/docker-magento/tree/34.2.0/images/php/7.3)
-    - [`7.3-fpm-8`](https://github.com/markshust/docker-magento/tree/34.1.0/images/php/7.3)
-    - [`7.3-fpm-7`](https://github.com/markshust/docker-magento/tree/33.0.0/images/php/7.3)
-    - [`7.3-fpm-6`](https://github.com/markshust/docker-magento/tree/32.0.1/images/php/7.3)
-    - [`7.3-fpm-5`](https://github.com/markshust/docker-magento/tree/30.0.0/images/php/7.3)
-    - [`7.3-fpm-4`](https://github.com/markshust/docker-magento/tree/29.0.0/images/php/7.3)
-    - [`7.3-fpm-3`](https://github.com/markshust/docker-magento/tree/28.0.0/images/php/7.3)
-    - [`7.3-fpm-2`](https://github.com/markshust/docker-magento/tree/27.2.0/images/php/7.3)
-    - [`7.3-fpm-1`](https://github.com/markshust/docker-magento/tree/26.0.0/images/php/7.3)
-    - [`7.3-fpm-0`](https://github.com/markshust/docker-magento/tree/24.2.0/images/php/7.3)
-- [markoshust/magento-elasticsearch (Docker Hub)](https://hub.docker.com/r/markoshust/magento-elasticsearch/)
-  - 7
-    - [`7.9`, `7.9.3-1`](https://github.com/markshust/docker-magento/tree/master/images/elasticsearch/7.9)
-    - [`7.9.3-0`](https://github.com/markshust/docker-magento/tree/39.1.0/images/elasticsearch/7.9)
-    - [`7.7`, `7.7.1-0`](https://github.com/markshust/docker-magento/tree/master/images/elasticsearch/7.7)
-    - [`7.6`, `7.6.2-2`](https://github.com/markshust/docker-magento/tree/35.0.0/images/elasticsearch/7.6)
-    - [`7.6.2-1`](https://github.com/markshust/docker-magento/tree/32.0.0/images/elasticsearch/7.6)
-    - [`7.6.2-0`](https://github.com/markshust/docker-magento/tree/31.0.2/images/elasticsearch/7.6)
-  
+🔗 [markoshust/magento-nginx](https://hub.docker.com/r/markoshust/magento-nginx/)
+
+- [`1.18`, `1.18-8`](images/nginx/1.18)
+- [`1.22`, `1.22-0`](images/nginx/1.22)
+- [`1.24`, `1.24-0`](images/nginx/1.24)
+</details>
+
+<details>
+<summary>🐘 PHP (Docker Hub)</summary>
+
+🔗 [markoshust/magento-php](https://hub.docker.com/r/markoshust/magento-php/)
+
+- [`8.1-fpm`, `8.1-fpm-7`](images/php/8.1)
+- [`8.2-fpm`, `8.2-fpm-6`](images/php/8.2)
+- [`8.3-fpm`, `8.3-fpm-4`](images/php/8.3)
+- [`8.4-fpm`, `8.4-fpm-0`](images/php/8.4)
+</details>
+
+<details>
+<summary>🔍 OpenSearch (Docker Hub)</summary>
+
+🔗 [markoshust/magento-opensearch](https://hub.docker.com/r/markoshust/magento-opensearch/)
+
+- [`1.2`, `1.2-0`](images/opensearch/1.2)
+- [`2.5`, `2.5-1`](images/opensearch/2.5)
+- [`2.12`, `2.12-0`](images/opensearch/2.12)
+</details>
+
+<details>
+<summary>📦 Elasticsearch (Docker Hub)</summary>
+
+🔗 [markoshust/magento-elasticsearch](https://hub.docker.com/r/markoshust/magento-elasticsearch/)
+
+- [`7.16`, `7.16-0`](images/elasticsearch/7.16)
+- [`7.17`, `7.17-1`](images/elasticsearch/7.17)
+- [`8.4`, `8.4-0`](images/elasticsearch/8.4)
+- [`8.5`, `8.5-0`](images/elasticsearch/8.5)
+- [`8.7`, `8.7-0`](images/elasticsearch/8.7)
+- [`8.11`, `8.11-0`](images/elasticsearch/8.11)
+- [`8.13`, `8.13-0`](images/elasticsearch/8.13)
+</details>
+
+<details>
+<summary>🐰 RabbitMQ (Docker Hub)</summary>
+
+🔗 [markoshust/magento-rabbitmq](https://hub.docker.com/r/markoshust/magento-rabbitmq/)
+
+- [`3.9`, `3.9-0`](images/rabbitmq/3.9)
+- [`3.11`, `3.11-1`](images/rabbitmq/3.11)
+- [`3.12`, `3.12-0`](images/rabbitmq/3.12)
+- [`4.1`, `4.1-0`](images/rabbitmq/4.1)
+</details>
+
+<details>
+<summary>🔐 SSH (Docker Hub)</summary>
+
+🔗 [markoshust/magento-ssh](https://hub.docker.com/r/markoshust/magento-ssh/)
+
+- [`latest`](images/ssh)
+</details>
+
+
 ## Usage
 
 This configuration is intended to be used as a Docker-based development environment for Magento 2.
@@ -115,7 +91,7 @@ This configuration has been tested on Mac & Linux. Windows is supported through 
 
 ## Setup
 
-- For more details on how everything works, see the extended [Setup readme](https://github.com/hieubo98/docker-magento/blob/master/SETUP.md).
+- For more details on how everything works, see the extended [Setup readme](https://github.com/nguyentrunghieu98/docker-magento/blob/master/SETUP.md).
 
 ### Automated Setup (New Project)
 
@@ -125,7 +101,7 @@ mkdir -p ~/Sites/magento
 cd $_
 
 # Run this automated one-liner from the directory you want to install your project.
-curl -s https://raw.githubusercontent.com/hieubo98/docker-magento/master/lib/onelinesetup | bash -s -- magento.test 2.4.6-p4 community
+curl -s https://raw.githubusercontent.com/nguyentrunghieu98/docker-magento/master/lib/onelinesetup | bash -s -- magento.test 2.4.6-p4 community
 ```
 
 The `magento.test` above defines the hostname to use, and the `2.4.6-p4` defines the Magento version to install. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
@@ -153,7 +129,7 @@ mkdir -p ~/Sites/magento
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/hieubo98/docker-magento/master/lib/template | bash
+curl -s https://raw.githubusercontent.com/nguyentrunghieu98/docker-magento/master/lib/template | bash
 
 # Download the version of Magento you want to use with:
 bin/download 2.4.6-p4 community
@@ -193,7 +169,7 @@ mkdir -p ~/Sites/magento
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/hieubo98/docker-magento/master/lib/template | bash
+curl -s https://raw.githubusercontent.com/nguyentrunghieu98/docker-magento/master/lib/template | bash
 
 # Take a backup of your existing database:
 bin/mysqldump > ~/Sites/existing/magento.sql
@@ -229,8 +205,8 @@ open https://magento.test
 
 ### Elasticsearch vs OpenSearch
 OpenSearch is set as the default search engine when setting up this project. Follow the instructions below if you want to use Elasticsearch instead:
-1. Comment out or remove the `opensearch` container in both the [`compose.yaml`](https://github.com/hieubo98/docker-magento/blob/master/compose/docker-compose.yml#L55-L66) and [`docker-compose.healthcheck.yaml`](https://github.com/hieubo98/docker-magento/blob/master/compose/docker-compose.healthcheck.yml#L38-L43) files
-2. Uncomment the `elasticsearch` container in both the [`compose.yaml`](https://github.com/hieubo98/docker-magento/blob/master/compose/docker-compose.yml#L70-L81) and [`docker-compose.healthcheck.yaml`](https://github.com/hieubo98/docker-magento/blob/master/compose/docker-compose.healthcheck.yml#L45-L50) files
+1. Comment out or remove the `opensearch` container in both the [`compose.yaml`](https://github.com/nguyentrunghieu98/docker-magento/blob/master/compose/docker-compose.yml#L55-L66) and [`docker-compose.healthcheck.yaml`](https://github.com/nguyentrunghieu98/docker-magento/blob/master/compose/docker-compose.healthcheck.yml#L38-L43) files
+2. Uncomment the `elasticsearch` container in both the [`compose.yaml`](https://github.com/nguyentrunghieu98/docker-magento/blob/master/compose/docker-compose.yml#L70-L81) and [`docker-compose.healthcheck.yaml`](https://github.com/nguyentrunghieu98/docker-magento/blob/master/compose/docker-compose.healthcheck.yml#L45-L50) files
 3. Update the `bin/setup-install` command to use the Elasticsearch ratther than OpenSearch. Change:
 
 ```
@@ -260,74 +236,7 @@ It is recommended to keep your root docker config files in one repository, and y
 
 
 ## Custom CLI Commands
-
-- `bin/analyse`: Run `phpstan analyse` within the container to statically analyse code, passing in directory to analyse. Ex. `bin/analyse app/code`
-- `bin/bash`: Drop into the bash prompt of your Docker container. The `phpfpm` container should be mainly used to access the filesystem within Docker.
-- `bin/cache-clean`: Access the [cache-clean](https://github.com/mage2tv/magento-cache-clean) CLI. Note the watcher is automatically started at startup in `bin/start`. Ex. `bin/cache-clean config full_page`
-- `bin/check-dependencies`: Provides helpful recommendations for dependencies tailored to the chosen Magento version.
-- `bin/cli`: Run any CLI command without going into the bash prompt. Ex. `bin/cli ls`
-- `bin/clinotty`: Run any CLI command with no TTY. Ex. `bin/clinotty chmod u+x bin/magento`
-- `bin/cliq`: The same as `bin/cli`, but pipes all output to `/dev/null`. Useful for a quiet CLI, or implementing long-running processes.
-- `bin/composer`: Run the composer binary. Ex. `bin/composer install`
-- `bin/configure-linux`: Adds the Docker container's IP address to the system's `/etc/hosts` file if it's not already present. Additionally, it prompts the user to open port 9003 for Xdebug if desired.
-- `bin/copyfromcontainer`: Copy folders or files from container to host. Ex. `bin/copyfromcontainer vendor`
-- `bin/copytocontainer`: Copy folders or files from host to container. Ex. `bin/copytocontainer --all`
-- `bin/create-user`: Create either an admin user or customer account.
-- `bin/cron`: Start or stop the cron service. Ex. `bin/cron start`
-- `bin/debug-cli`: Enable Xdebug for bin/magento, with an optional argument of the IDE key. Defaults to PHPSTORM Ex. `bin/debug-cli enable PHPSTORM`
-- `bin/deploy`: Runs the standard Magento deployment process commands. Pass extra locales besides `en_US` via an optional argument. Ex. `bin/deploy nl_NL`
-- `bin/dev-test-run`: Facilitates running PHPUnit tests for a specified test type (e.g., integration). It expects the test type as the first argument and passes any additional arguments to PHPUnit, allowing for customization of test runs. If no test type is provided, it prompts the user to specify one before exiting.
-- `bin/dev-urn-catalog-generate`: Generate URN's for PhpStorm and remap paths to local host. Restart PhpStorm after running this command.
-- `bin/devconsole`: Alias for `bin/n98-magerun2 dev:console`
-- `bin/docker-compose`: Support V1 (`docker-compose`) and V2 (`docker compose`) docker compose command, and use custom configuration files, such as `docker-compose.yml` and `docker-compose.dev.yml`
-- `bin/docker-stats`: Display container name and container ID, status for CPU, memory usage(in MiB and %), and memory limit of currently-running Docker containers.
-- `bin/download`: Download specific Magento version from Composer to the container, with optional arguments of the version (2.4.6-p4 [default]) and type ("community" [default], "enterprise", or "mageos"). Ex. `bin/download 2.4.6-p4 enterprise`
-- `bin/fixowns`: This will fix filesystem ownerships within the container.
-- `bin/fixperms`: This will fix filesystem permissions within the container.
-- `bin/grunt`: Run the grunt binary. Ex. `bin/grunt exec`
-- `bin/install-php-extensions`: Install PHP extension in the container. Ex. `bin/install-php-extensions sourceguardian`
-- `bin/log`: Monitor the Magento log files. Pass no params to tail all files. Ex. `bin/log debug.log`
-- `bin/magento`: Run the Magento CLI. Ex: `bin/magento cache:flush`
-- `bin/magento-version`: Determine the Magento version installed in the current environment.
-- `bin/mftf`: Run the Magento MFTF. Ex: `bin/mftf build:project`
-- `bin/mysql`: Run the MySQL CLI with database config from `env/db.env`. Ex. `bin/mysql -e "EXPLAIN core_config_data"` or`bin/mysql < magento.sql`
-- `bin/mysqldump`: Backup the Magento database. Ex. `bin/mysqldump > magento.sql`
-- `bin/n98-magerun2`: Access the [n98-magerun2](https://github.com/netz98/n98-magerun2) CLI. Ex: `bin/n98-magerun2 dev:console`
-- `bin/node`: Run the node binary. Ex. `bin/node --version`
-- `bin/npm`: Run the npm binary. Ex. `bin/npm install`
-- `bin/phpcbf`: Auto-fix PHP_CodeSniffer errors with Magento2 options. Ex. `bin/phpcbf <path-to-extension>`
-- `bin/phpcs`: Run PHP_CodeSniffer with Magento2 options. Ex. `bin/phpcs <path-to-extension>`
-- `bin/phpcs-json-report`: Run PHP_CodeSniffer with Magento2 options and save to `report.json` file. Ex. `bin/phpcs-json-report <path-to-extension>`
-- `bin/pwa-studio`: (BETA) Start the PWA Studio server. Note that Chrome will throw SSL cert errors and not allow you to view the site, but Firefox will.
-- `bin/redis`: Run a command from the redis container. Ex. `bin/redis redis-cli monitor`
-- `bin/remove`: Remove all containers.
-- `bin/removeall`: Remove all containers, networks, volumes, and images, calling `bin/stopall` before doing so.
-- `bin/removenetwork`: Remove a network associated with the current directory's name.
-- `bin/removevolumes`: Remove all volumes.
-- `bin/restart`: Stop and then start all containers.
-- `bin/root`: Run any CLI command as root without going into the bash prompt. Ex `bin/root apt-get install nano`
-- `bin/rootnotty`: Run any CLI command as root with no TTY. Ex `bin/rootnotty chown -R app:app /var/www/html`
-- `bin/setup`: Run the Magento setup process to install Magento from the source code, with optional domain name. Defaults to `magento.test`. Ex. `bin/setup magento.test`
-- `bin/setup-composer-auth`: Setup authentication credentials for Composer.
-- `bin/setup-domain`: Setup Magento domain name. Ex: `bin/setup-domain magento.test`
-- `bin/setup-grunt`: Install and configure Grunt JavaScript task runner to compile .less files
-- `bin/setup-install`: Automates the installation process for a Magento instance.
-- `bin/setup-integration-tests`: Script to set up integration tests.
-- `bin/setup-pwa-studio`: (BETA) Install PWA Studio (requires NodeJS and Yarn to be installed on the host machine). Pass in your base site domain, otherwise the default `master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud` will be used. Ex: `bin/setup-pwa-studio magento.test`.
-- `bin/setup-pwa-studio-sampledata`: This script makes it easier to install Venia sample data. Pass in your base site domain, otherwise the default `master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud` will be used. Ex: `bin/setup-pwa-studio-sampledata magento.test`.
-- `bin/setup-ssl`: Generate an SSL certificate for one or more domains. Ex. `bin/setup-ssl magento.test foo.test`
-- `bin/setup-ssl-ca`: Generate a certificate authority and copy it to the host.
-- `bin/spx`: Disable or enable output compression to enable or disbale SPX. Accepts params `disable` (default) or `enable`. Ex. `bin/spx enable`
-- `bin/start`: Start all containers, good practice to use this instead of `docker-compose up -d`, as it may contain additional helpers.
-- `bin/status`: Check the container status.
-- `bin/stop`: Stop all project containers.
-- `bin/stopall`: Stop all docker running containers
-- `bin/update`: Update your project to the most recent version of `docker-magento`.
-- `bin/xdebug`: Disable or enable Xdebug. Accepts params `disable` (default) or `enable`. Ex. `bin/xdebug enable`
-- `bin/xdebug23x`: Disable or enable Xdebug. Accepts params `disable` (default) or `enable`. Ex. `bin/xdebug23x enable`
-- `bin/xdebug24x`: Disable or enable Xdebug. Accepts params `disable` (default) or `enable`. Ex. `bin/xdebug24x enable`
-- `bin/setup23x`: Run the Magento setup process to install Magento from the source code, with optional domain name. Defaults to `magento.test`. Ex. `bin/setup23x magento.test`
-- `bin/setup24x`: Run the Magento setup process to install Magento from the source code, with optional domain name. Defaults to `magento.test`. Ex. `bin/setup24x magento.test`
+Find more info [Here](https://github.com/nguyentrunghieu98/docker-magento/blob/master/CLI_COMMANDS.md)
 
 ## Misc Info
 
@@ -436,7 +345,7 @@ PhpMyAdmin is built into the `docker-compose.dev.yaml` file. Simply open `http:/
 
 Install and enable the PHP Debug extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug).
 
-Otherwise, this project now automatically sets up Xdebug support with VS Code. If you wish to set this up manually, please see the [`.vscode/launch.json`](https://github.com/hieubo98/docker-magento/blame/master/compose/.vscode/launch.json) file.
+Otherwise, this project now automatically sets up Xdebug support with VS Code. If you wish to set this up manually, please see the [`.vscode/launch.json`](https://github.com/nguyentrunghieu98/docker-magento/blame/master/compose/.vscode/launch.json) file.
 
 1. In VS Code, make sure that it's running in a WSL window, rather than in the default window.
 2. Install the [`PHP Debug`](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) extension on VS Code.
