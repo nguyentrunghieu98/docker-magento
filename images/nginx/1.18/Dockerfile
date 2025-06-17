@@ -1,5 +1,5 @@
 FROM nginx:1.18-alpine
-MAINTAINER Hieu Nguyen <hieubo.com>
+MAINTAINER Mark Shust <mark@shust.com>
 
 ARG APP_ID=1000
 
