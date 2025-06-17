@@ -3,7 +3,7 @@
 ## New Magento 2 Project (macOS/Linux)
 
 1. Create the project template by going to the place you want the new project (ex. cd ~/Sites/magento2), then run
-	- `curl -s https://raw.githubusercontent.com/hieubo98/docker-magento/master/lib/template | bash`
+	- `curl -s https://raw.githubusercontent.com/nguyentrunghieu98/docker-magento/master/lib/template | bash`
 	- `Edit folder ENV`
 
 2. Extract the contents of your current Magento site to the `src` folder, or download a fresh copy of the Magento source code for starting a new project with:
