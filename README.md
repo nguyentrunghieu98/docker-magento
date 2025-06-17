@@ -101,12 +101,22 @@ mkdir -p ~/Sites/magento
 cd $_
 
 # Run this automated one-liner from the directory you want to install your project.
-curl -s https://raw.githubusercontent.com/nguyentrunghieu98/docker-magento/master/lib/onelinesetup | bash -s -- magento.test 2.4.6-p4 community
+curl -s https://raw.githubusercontent.com/nguyentrunghieu98/docker-magento/master/lib/onelinesetup | bash -s -- magento.test community 2.4.8
 ```
 
-The `magento.test` above defines the hostname to use, and the `2.4.6-p4` defines the Magento version to install. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
+The `magento.test` above defines the hostname to use, `community` is the Magento edition, and the `2.4.8` defines the Magento version to install. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
 
 After the one-liner above completes running, you should be able to access your site at `https://magento.test`.
+
+#### Install sample data
+
+After the above installation is complete, run the following lines to install sample data:
+
+```bash
+bin/magento sampledata:deploy
+bin/magento setup:upgrade
+```
+
 
 #### Install sample data
 
@@ -129,13 +139,13 @@ mkdir -p ~/Sites/magento
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/nguyentrunghieu98/docker-magento/master/lib/template | bash
+curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/template | bash
 
 # Download the version of Magento you want to use with:
-bin/download 2.4.6-p4 community
-# You can specify the version and type (community, enterprise, mageos, mageos-nightly, mageos-mirror, mageos-hypernode-mirror, or mageos-maxcluster-mirror).
-# The mageos type is an alias for mageos-mirror.
-# If no arguments are passed, "2.4.6-p4" and "community" are the default values used.
+bin/download community 2.4.8
+# You can specify the edition (community, enterprise, mageos) and version (2.4.7-p3, 1.0.5, etc.)
+# If no arguments are passed in, the edition defaults to "community"
+# If no version is specified, it defaults to the most recent version defined in `bin/download`
 
 # or for Magento core development:
 # bin/start --no-dev
@@ -144,22 +154,12 @@ bin/download 2.4.6-p4 community
 # bin/cli git checkout 2.4-develop
 # bin/composer install
 
-# Want to install Magento <2.4.6? In bin/setup-install, replace the lines:
-#  --elasticsearch-host="$ES_HOST" \
-#  --elasticsearch-port="$ES_PORT" \
-#  --opensearch-host="$OPENSEARCH_HOST" \
-#  --opensearch-port="$OPENSEARCH_PORT" \
-#  --search-engine=opensearch \
-# with:
-#  --elasticsearch-host="$ES_HOST" \
-#  --elasticsearch-port="$ES_PORT" \
-#  --search-engine=elasticsearch7 \
-
 # Run the setup installer for Magento:
 bin/setup magento.test
 
 open https://magento.test
 ```
+
 
 #### Existing Projects
 
@@ -169,7 +169,7 @@ mkdir -p ~/Sites/magento
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/nguyentrunghieu98/docker-magento/master/lib/template | bash
+curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/template | bash
 
 # Take a backup of your existing database:
 bin/mysqldump > ~/Sites/existing/magento.sql
@@ -205,9 +205,9 @@ open https://magento.test
 
 ### Elasticsearch vs OpenSearch
 OpenSearch is set as the default search engine when setting up this project. Follow the instructions below if you want to use Elasticsearch instead:
-1. Comment out or remove the `opensearch` container in both the [`compose.yaml`](https://github.com/nguyentrunghieu98/docker-magento/blob/master/compose/docker-compose.yml#L55-L66) and [`docker-compose.healthcheck.yaml`](https://github.com/nguyentrunghieu98/docker-magento/blob/master/compose/docker-compose.healthcheck.yml#L38-L43) files
-2. Uncomment the `elasticsearch` container in both the [`compose.yaml`](https://github.com/nguyentrunghieu98/docker-magento/blob/master/compose/docker-compose.yml#L70-L81) and [`docker-compose.healthcheck.yaml`](https://github.com/nguyentrunghieu98/docker-magento/blob/master/compose/docker-compose.healthcheck.yml#L45-L50) files
-3. Update the `bin/setup-install` command to use the Elasticsearch ratther than OpenSearch. Change:
+1. Comment out or remove the `opensearch` container in both the [`compose.yaml`](https://github.com/markshust/docker-magento/blob/master/compose/compose.yaml#L69-L84) and [`compose.healthcheck.yaml`](https://github.com/markshust/docker-magento/blob/master/compose/compose.healthcheck.yaml#L36-L41) files
+2. Uncomment the `elasticsearch` container in both the [`compose.yaml`](https://github.com/markshust/docker-magento/blob/master/compose/compose.yaml#L86-L106) and [`compose.healthcheck.yaml`](https://github.com/markshust/docker-magento/blob/master/compose/compose.healthcheck.yaml#L43-L48) files
+3. Update the `bin/setup-install` command to use the Elasticsearch rather than OpenSearch. Change:
 
 ```
 --opensearch-host="$OPENSEARCH_HOST" \
@@ -219,7 +219,6 @@ to:
 ```
 --elasticsearch-host="$ES_HOST" \
 --elasticsearch-port="$ES_PORT" \
-
 ```
 
 ## Updates
@@ -234,9 +233,77 @@ We recommend keeping your docker config files in version control, so you can mon
 
 It is recommended to keep your root docker config files in one repository, and your Magento code setup in another. This ensures the Magento base path lives at the top of one specific repository, which makes automated build pipelines and deployments easy to manage, and maintains compatibility with projects such as Magento Cloud.
 
-
 ## Custom CLI Commands
-Find more info [Here](https://github.com/nguyentrunghieu98/docker-magento/blob/master/CLI_COMMANDS.md)
+
+- `bin/analyse`: Run `phpstan analyse` within the container to statically analyse code, passing in directory to analyse. Ex. `bin/analyse app/code`
+- `bin/bash`: Drop into the bash prompt of your Docker container. The `phpfpm` container should be mainly used to access the filesystem within Docker.
+- `bin/blackfire`: Disable or enable Blackfire. Accepts argument `disable`, `enable`, or `status`. Ex. `bin/blackfire enable`
+- `bin/cache-clean`: Access the [cache-clean](https://github.com/mage2tv/magento-cache-clean) CLI. Note the watcher is automatically started at startup in `bin/start`. Ex. `bin/cache-clean config full_page`
+- `bin/check-dependencies`: Provides helpful recommendations for dependencies tailored to the chosen Magento version.
+- `bin/cli`: Run any CLI command without going into the bash prompt. Ex. `bin/cli ls`
+- `bin/clinotty`: Run any CLI command with no TTY. Ex. `bin/clinotty chmod u+x bin/magento`
+- `bin/cliq`: The same as `bin/cli`, but pipes all output to `/dev/null`. Useful for a quiet CLI, or implementing long-running processes.
+- `bin/composer`: Run the composer binary. Ex. `bin/composer install`
+- `bin/configure-linux`: Adds the Docker container's IP address to the system's `/etc/hosts` file if it's not already present. Additionally, it prompts the user to open port 9003 for Xdebug if desired.
+- `bin/copyfromcontainer`: Copy folders or files from container to host. Ex. `bin/copyfromcontainer vendor`
+- `bin/copytocontainer`: Copy folders or files from host to container. Ex. `bin/copytocontainer --all`
+- `bin/create-user`: Create either an admin user or customer account.
+- `bin/cron`: Start or stop the cron service. Ex. `bin/cron start`
+- `bin/debug-cli`: Enable Xdebug for bin/magento, with an optional argument of the IDE key. Defaults to PHPSTORM Ex. `bin/debug-cli enable PHPSTORM`
+- `bin/deploy`: Runs the standard Magento deployment process commands. Pass extra locales besides `en_US` via an optional argument. Ex. `bin/deploy nl_NL`
+- `bin/dev-test-run`: Facilitates running PHPUnit tests for a specified test type (e.g., integration). It expects the test type as the first argument and passes any additional arguments to PHPUnit, allowing for customization of test runs. If no test type is provided, it prompts the user to specify one before exiting.
+- `bin/dev-urn-catalog-generate`: Generate URN's for PhpStorm and remap paths to local host. Restart PhpStorm after running this command.
+- `bin/devconsole`: Alias for `bin/n98-magerun2 dev:console`
+- `bin/docker-compose`: Support V1 (`docker-compose`) and V2 (`docker compose`) docker compose command, and use custom configuration files, such as `compose.yml` and `compose.dev.yml`
+- `bin/docker-start`: Start the Docker application (either Orbstack or Docker Desktop)
+- `bin/docker-stats`: Display container name and container ID, status for CPU, memory usage(in MiB and %), and memory limit of currently-running Docker containers.
+- `bin/download`: Download specific Magento version from Composer to the container, with optional arguments of the type ("community" [default], "enterprise", or "mageos") and version ([default] is defined in `bin/download`). Ex. `bin/download mageos` or `bin/download enterprise 2.4.8`
+- `bin/ece-patches`: Run the Cloud Patches CLI. Ex: `bin/ece-tools apply`
+- `bin/fixowns`: This will fix filesystem ownerships within the container.
+- `bin/fixperms`: This will fix filesystem permissions within the container.
+- `bin/grunt`: Run the grunt binary. Ex. `bin/grunt exec`
+- `bin/install-php-extensions`: Install PHP extension in the container. Ex. `bin/install-php-extensions sourceguardian`
+- `bin/log`: Monitor the Magento log files. Pass no params to tail all files. Ex. `bin/log debug.log`
+- `bin/magento`: Run the Magento CLI. Ex: `bin/magento cache:flush`
+- `bin/magento-version`: Determine the Magento version installed in the current environment.
+- `bin/mftf`: Run the Magento MFTF. Ex: `bin/mftf build:project`
+- `bin/mysql`: Run the MySQL CLI with database config from `env/db.env`. Ex. `bin/mysql -e "EXPLAIN core_config_data"` or`bin/mysql < magento.sql`
+- `bin/mysqldump`: Backup the Magento database. Ex. `bin/mysqldump > magento.sql`
+- `bin/n98-magerun2`: Access the [n98-magerun2](https://github.com/netz98/n98-magerun2) CLI. Ex: `bin/n98-magerun2 dev:console`
+- `bin/node`: Run the node binary. Ex. `bin/node --version`
+- `bin/npm`: Run the npm binary. Ex. `bin/npm install`
+- `bin/phpcbf`: Auto-fix PHP_CodeSniffer errors with Magento2 options. Ex. `bin/phpcbf <path-to-extension>`
+- `bin/phpcs`: Run PHP_CodeSniffer with Magento2 options. Ex. `bin/phpcs <path-to-extension>`
+- `bin/phpcs-json-report`: Run PHP_CodeSniffer with Magento2 options and save to `report.json` file. Ex. `bin/phpcs-json-report <path-to-extension>`
+- `bin/pwa-studio`: (BETA) Start the PWA Studio server. Note that Chrome will throw SSL cert errors and not allow you to view the site, but Firefox will.
+- `bin/redis`: Run a command from the redis container. Ex. `bin/redis redis-cli monitor`
+- `bin/remove`: Remove all containers.
+- `bin/removeall`: Remove all containers, networks, volumes, and images, calling `bin/stopall` before doing so.
+- `bin/removenetwork`: Remove a network associated with the current directory's name.
+- `bin/removevolumes`: Remove all volumes.
+- `bin/restart`: Stop and then start all containers.
+- `bin/root`: Run any CLI command as root without going into the bash prompt. Ex `bin/root apt-get install nano`
+- `bin/rootnotty`: Run any CLI command as root with no TTY. Ex `bin/rootnotty chown -R app:app /var/www/html`
+- `bin/setup`: Run the Magento setup process to install Magento from the source code, with optional domain name. Defaults to `magento.test`. Ex. `bin/setup magento.test`
+- `bin/setup-composer-auth`: Setup authentication credentials for Composer.
+- `bin/setup-domain`: Setup Magento domain name. Ex: `bin/setup-domain magento.test`
+- `bin/setup-grunt`: Install and configure Grunt JavaScript task runner to compile .less files
+- `bin/setup-install`: Automates the installation process for a Magento instance.
+- `bin/setup-integration-tests`: Script to set up integration tests.
+- `bin/setup-pwa-studio`: (BETA) Install PWA Studio (requires NodeJS and Yarn to be installed on the host machine). Pass in your base site domain, otherwise the default `master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud` will be used. Ex: `bin/setup-pwa-studio magento.test`.
+- `bin/setup-pwa-studio-sampledata`: This script makes it easier to install Venia sample data. Pass in your base site domain, otherwise the default `master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud` will be used. Ex: `bin/setup-pwa-studio-sampledata magento.test`.
+- `bin/setup-ssl`: Generate an SSL certificate for one or more domains. Ex. `bin/setup-ssl magento.test foo.test`
+- `bin/setup-ssl-ca`: Generate a certificate authority and copy it to the host.
+- `bin/spx`: Disable or enable output compression to enable or disable SPX. Accepts params `disable` (default) or `enable`. Ex. `bin/spx enable`
+- `bin/start`: Start all containers, good practice to use this instead of `docker-compose up -d`, as it may contain additional helpers.
+- `bin/status`: Check the container status.
+- `bin/stop`: Stop all project containers.
+- `bin/stopall`: Stop all docker running containers
+- `bin/test/unit`: Run unit tests for a specific path. Ex. `bin/test/unit my-dir`
+- `bin/test/unit-coverage`: Generate unit tests coverage reports, saved to the folder `dev/tests/unit/report`. Ex. `bin/test/unit-coverage my-dir`
+- `bin/test/unit-xdebug`: Run unit tests with Xdebug. Ex. `bin/test/unit-xdebug my-dir`
+- `bin/update`: Update your project to the most recent version of `docker-magento`.
+- `bin/xdebug`: Set a custom xdebug.mode (Ex. `bin/xdebug debug`) or check the current status and get all available modes (Ex. `bin/xdebug`)
 
 ## Misc Info
 
